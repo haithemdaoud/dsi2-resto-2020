@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Member;
+use App\Meal;
 
 class AppController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        $meals = Meal::all();
+        return view('welcome', compact('meals'));
     }
 
     public function home()
