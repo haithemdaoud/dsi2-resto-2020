@@ -12,22 +12,27 @@ class AppController extends Controller
         return view('welcome');
     }
 
-    public function about()
+    public function home()
     {
-        $email = 'my_email@server.com';
-
-        // return view('about', ['email' => $email]);
-        
-        // ou bien
-        // return view('about')->with('email', $email);
-        
-        // ou bien
-        return view('about', compact('email'));
+        return view('home');
     }
 
-    public function team()
-    {
-        $members = Member::all();
-        return view('team', ['members' => $members]);
-    }
+    // public function about()
+    // {
+    //     $email = 'my_email@server.com';
+
+    //     // return view('about', ['email' => $email]);
+        
+    //     // ou bien
+    //     // return view('about')->with('email', $email);
+        
+    //     // ou bien
+    //     return view('about', compact('email'));
+    // }
+
+    // public function team()
+    // {
+    //     $members = Member::all();
+    //     return view('team', ['members' => $members]);
+    // }
 }
