@@ -8,6 +8,6 @@ class Meal extends Model
 {
     public function orderLines()
     {
-        $this->hasMany('App\OrderLine');
+        return $this->hasMany('App\OrderLine');
     }
 }

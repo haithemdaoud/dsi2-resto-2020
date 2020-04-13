@@ -39,11 +39,11 @@ class User extends Authenticatable
 
     public function bookings()
     {
-        $this->hasMany('App\Booking');
+        return $this->hasMany('App\Booking');
     }
 
     public function orders()
     {
-        $this->hasMany('App\Order');
+        return $this->hasMany('App\Order');
     }
 }

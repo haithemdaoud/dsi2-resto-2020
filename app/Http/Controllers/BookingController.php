@@ -4,9 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +26,12 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $comingBookings = Auth::user()->bookings()->comingBookings()->get();
+        $passedBookings = Auth::user()->bookings()->passedBookings()->get();
+        return view('booking.index', [
+            'comingBookings' => $comingBookings,
+            'passedBookings' => $passedBookings
+        ]);
     }
 
     /**
@@ -24,7 +41,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        return view('booking.create');
     }
 
     /**
@@ -35,7 +52,7 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

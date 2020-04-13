@@ -13,6 +13,6 @@ class OrderLine extends Model
 
     public function meal()
     {
-        $this->belongsTo('App\Meal');
+        return $this->belongsTo('App\Meal');
     }
 }
