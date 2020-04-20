@@ -26,8 +26,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $comingBookings = Auth::user()->bookings()->comingBookings()->get();
-        $passedBookings = Auth::user()->bookings()->passedBookings()->get();
+        $comingBookings = Auth::user()->bookings()->comingBookings()->orderBy('booking_date')->get();
+        $passedBookings = Auth::user()->bookings()->passedBookings()->orderBy('booking_date', 'desc')->get();
         return view('booking.index', [
             'comingBookings' => $comingBookings,
             'passedBookings' => $passedBookings
@@ -52,7 +52,18 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $request->validate($this->validationRules());
+
+        $booking = new Booking;
+
+        $booking->user_id = Auth::id();
+        $booking->booking_date = $request->booking_date;
+        $booking->booking_time = $request->booking_time;
+        $booking->seats_nbr = $request->seats_nbr;
+
+        $booking->save();
+
+        return redirect()->route('booking.index')->with('AddBooking', 'New booking added successfully');
     }
 
     /**
@@ -63,7 +74,7 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        //
+        return view('booking.show')->with('booking', $booking);
     }
 
     /**
@@ -74,7 +85,7 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
-        //
+        return view('booking.edit', compact('booking'));
     }
 
     /**
@@ -86,7 +97,11 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        //
+        $validatedData = $request->validate($this->validationRules());
+
+        $booking->update($validatedData);
+
+        return redirect()->route('booking.show', $booking->id)->with('updateBooking', 'Booking updated successfully');
     }
 
     /**
@@ -97,6 +112,17 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
-        //
+        $booking->delete();
+
+        return redirect()->route('booking.index')->with('deleteBooking', 'Booking deleted successfully');
+    }
+
+    private function validationRules()
+    {
+        return [
+            'booking_date' => 'required|date',
+            'booking_time' => 'required',
+            'seats_nbr' => 'required|min:1|max:20'
+        ];
     }
 }
