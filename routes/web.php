@@ -22,4 +22,17 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/home', 'AppController@home')->name('home');
     Route::resource('/booking', 'BookingController');
+
+    Route::group([
+                'middleware' => 'admin',
+                'namespace' => 'Admin',
+                'prefix' => 'admin'
+            ], function () {
+
+                Route::prefix('bookings')->group(function () {
+                    Route::get('today', 'BookingController@today');
+                    Route::get('coming', 'BookingController@coming');
+                    Route::get('history', 'BookingController@history');
+                });
+            });
 });
