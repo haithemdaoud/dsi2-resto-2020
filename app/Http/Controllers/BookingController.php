@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewBooking;
 
 class BookingController extends Controller
 {
@@ -63,7 +65,9 @@ class BookingController extends Controller
 
         $booking->save();
 
-        return redirect()->route('booking.index')->with('AddBooking', 'New booking added successfully');
+        Mail::to(Auth::user()->email)->send(new NewBooking($booking));
+
+        return redirect()->route('booking.index')->with('AddBooking', 'New booking added successfully. We sent you an email, please check your inbox.');
     }
 
     /**
