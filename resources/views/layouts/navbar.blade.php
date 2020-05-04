@@ -24,7 +24,7 @@
                             <a href="#" class="nav-link">Orders</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Meals</a>
+                            <a href="{{ route('meals.index') }}" class="nav-link">Meals</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">Users</a>

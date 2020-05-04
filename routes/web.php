@@ -34,5 +34,8 @@ Route::middleware('auth')->group(function () {
                     Route::get('coming', 'BookingController@coming');
                     Route::get('history', 'BookingController@history');
                 });
+
+                Route::resource('meals', 'MealsController');
+
             });
 });
