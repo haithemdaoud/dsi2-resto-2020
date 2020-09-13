@@ -65,7 +65,7 @@ class BookingController extends Controller
 
         $booking->save();
 
-        Mail::to(Auth::user()->email)->send(new NewBooking($booking));
+        //Mail::to(Auth::user()->email)->send(new NewBooking($booking));
 
         return redirect()->route('booking.index')->with('AddBooking', 'New booking added successfully. We sent you an email, please check your inbox.');
     }

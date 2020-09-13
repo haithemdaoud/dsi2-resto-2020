@@ -13,15 +13,19 @@
                 <ul class="navbar-nav mr-auto">
                     @admin
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bookings</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown09">
-                            <a class="dropdown-item" href="{{ url('admin/bookings/today') }}">Today Bookings</a>
-                            <a class="dropdown-item" href="{{ url('admin/bookings/coming') }}">Coming Bookings</a>
-                            <a class="dropdown-item" href="{{ url('admin/bookings/history') }}">Bookings History</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="bookingDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bookings</a>
+                            <div class="dropdown-menu" aria-labelledby="bookingDropdown">
+                                <a class="dropdown-item" href="{{ url('admin/bookings/today') }}">Today Bookings</a>
+                                <a class="dropdown-item" href="{{ url('admin/bookings/coming') }}">Coming Bookings</a>
+                                <a class="dropdown-item" href="{{ url('admin/bookings/history') }}">Bookings History</a>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Orders</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="OrderDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Order</a>
+                            <div class="dropdown-menu" aria-labelledby="OrderDropdown">
+                                <a class="dropdown-item" href="{{ url('order/create') }}">Today Bookings</a>
+                                <a class="dropdown-item" href="{{ url('order/history') }}">Coming Bookings</a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('meals.index') }}" class="nav-link">Meals</a>
@@ -34,7 +38,7 @@
                             <a href="{{ route('booking.index') }}" class="nav-link">Booking</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Order</a>
+                            <a href="/order/index" class="nav-link">Order</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">Contact</a>

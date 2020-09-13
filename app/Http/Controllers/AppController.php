@@ -10,13 +10,18 @@ class AppController extends Controller
 {
     public function index()
     {
-        $meals = Meal::all();
+        $meals = Meal::paginate(9);
         return view('welcome', compact('meals'));
     }
 
     public function home()
     {
         return view('home');
+    }
+
+    public function order()
+    {
+        return view('order.index');
     }
 
     // public function about()

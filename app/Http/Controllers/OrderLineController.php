@@ -36,6 +36,8 @@ class OrderLineController extends Controller
     public function store(Request $request)
     {
         //
+        
+        
     }
 
     /**
@@ -82,4 +84,5 @@ class OrderLineController extends Controller
     {
         //
     }
+ 
 }

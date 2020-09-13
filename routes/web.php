@@ -23,6 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', 'AppController@home')->name('home');
     Route::resource('/booking', 'BookingController');
 
+    // Route::get('/order/{any}', 'AppController@order')->where('any', '.*');
+    Route::get('/order/{any}', 'AppController@order')->where('any', '^(?!api).*$');
+
     Route::group([
                 'middleware' => 'admin',
                 'namespace' => 'Admin',
